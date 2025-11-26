@@ -6,15 +6,23 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    SoundManager soundManager;
+
     public TMP_Text daysText;
     public TMP_Text moneyText;
+    public TMP_Text objText;
 
     public int bank = 0;
     public int allowance = 10;
     public int spendings = 1;
 
     public int daysleft = 14;
-    
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+
     public void DaysLeftUpdate()
     {
         daysText.text = "Days left: " + daysleft;
@@ -33,6 +41,7 @@ public class GameManager : MonoBehaviour
     public void Allowance()
     {
         bank += allowance;
+        soundManager.PlaySFX(soundManager.coinCollect);
         UpdateMoneyText();
     }
 
@@ -45,4 +54,9 @@ public class GameManager : MonoBehaviour
         UpdateMoneyText();
     }
 
+    public void DayCycle()
+    {
+        daysleft -= 1;
+        DaysLeftUpdate();
+    }
 }
