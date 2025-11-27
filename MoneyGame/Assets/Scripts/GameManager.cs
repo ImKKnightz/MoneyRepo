@@ -7,6 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     SoundManager soundManager;
+    GameManager gameManager;
 
     public TMP_Text daysText;
     public TMP_Text moneyText;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+        DontDestroyOnLoad(gameManager.gameObject);
     }
 
     public void DaysLeftUpdate()
