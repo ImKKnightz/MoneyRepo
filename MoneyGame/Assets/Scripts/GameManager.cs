@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
 
     public int[] foodlist = {1,2,3,4,5,6,7,8};
     public float[] foodprices = { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
-    public int[] check = { };
+    public List<int> check = new List<int>();
     public int gameDifficulty;
-
+    /*
     public TextMeshProUGUI fooddialogue;
     public TextMeshProUGUI pricedialogue;
 
@@ -40,18 +40,19 @@ public class GameManager : MonoBehaviour
     public GameObject deselectfood6;
     public GameObject deselectfood7;
     public GameObject deselectfood8;
-
+    */
     public int rnd;
 
-
+    /*
     private void Awake()
     {
         soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
         DontDestroyOnLoad(gameManager.gameObject);
     }
-
+    */
     private void Start()
     {
+        /*
         food1.SetActive(false);
         food2.SetActive(false);
         food3.SetActive(false);
@@ -69,10 +70,26 @@ public class GameManager : MonoBehaviour
         deselectfood6.SetActive(false);
         deselectfood7.SetActive(false);
         deselectfood8.SetActive(false);
-
+        
         foodtext.SetActive(true);
         pricedialoguetext.SetActive(false);
         fooddialogue.text = "Select a food item from the menu.";
+        */
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            RandomFood();
+            int count = check.Count();
+            Debug.Log(count);
+            List<int> list = check;
+            foreach (int i in list)
+            {
+                Debug.Log(i);
+            }
+        }
     }
 
     public void SelectDifficulty()
@@ -97,13 +114,28 @@ public class GameManager : MonoBehaviour
 
     public void RandomFood()
     {
-        Randomiser();
-        int chosenfood = rnd;
+        //OrderBy() function rearranges the order of foodlist
+        //The () usese the UnityEngine.Random.value to randomise the elements in the list
+        check = foodlist.OrderBy(x => UnityEngine.Random.value).ToList();
+        Debug.Log(check);
+    }
 
-        if (foodlist.Contains(chosenfood))
+    public void GenerateRandomOrder()
+    {
+        check.Clear();
+        List<int> temp = foodlist.ToList();
+
+        // Fisher–Yates shuffle
+        for (int i = 0; i < temp.Count; i++)
         {
-
+            int randIndex = UnityEngine.Random.Range(i, temp.Count);
+            int tempVal = temp[i];
+            temp[i] = temp[randIndex];
+            temp[randIndex] = tempVal;
+            Debug.Log(tempVal);
         }
+
+        check = temp;
     }
 
     public void SelectFood(int rnd)
@@ -113,8 +145,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeDialogue()
     {
-        foodtext.SetActive(false);
-        pricedialoguetext.SetActive(true);
+        //foodtext.SetActive(false);
+        //pricedialoguetext.SetActive(true);
     }
 
     /*public void Allowance()
