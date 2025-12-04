@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameManager gameManager;
 
     public int[] foodlist = {1,2,3,4,5,6,7,8};
-    public float[] foodprices = { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
+    public List<float> foodprices = new List<float> { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
     public List<int> check = new List<int>();
     public int gameDifficulty;
     /*
@@ -75,12 +75,15 @@ public class GameManager : MonoBehaviour
         pricedialoguetext.SetActive(false);
         fooddialogue.text = "Select a food item from the menu.";
         */
+
+        gameDifficulty = 1;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            /*
             RandomFood();
             int count = check.Count();
             Debug.Log(count);
@@ -89,6 +92,8 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log(i);
             }
+            */
+            SelectDifficulty();
         }
     }
 
@@ -96,8 +101,8 @@ public class GameManager : MonoBehaviour
     {
         if (gameDifficulty == 1)
         {
-            int roundedfoodprices = Convert.ToInt32(foodprices[rnd - 1]);
-
+            List <int> roundedfoodprices = foodprices.Select(i => Mathf.RoundToInt(i)).ToList();
+            Debug.Log(string.Join(",", roundedfoodprices));
         }
     }
 
@@ -118,24 +123,6 @@ public class GameManager : MonoBehaviour
         //The () usese the UnityEngine.Random.value to randomise the elements in the list
         check = foodlist.OrderBy(x => UnityEngine.Random.value).ToList();
         Debug.Log(check);
-    }
-
-    public void GenerateRandomOrder()
-    {
-        check.Clear();
-        List<int> temp = foodlist.ToList();
-
-        // Fisher–Yates shuffle
-        for (int i = 0; i < temp.Count; i++)
-        {
-            int randIndex = UnityEngine.Random.Range(i, temp.Count);
-            int tempVal = temp[i];
-            temp[i] = temp[randIndex];
-            temp[randIndex] = tempVal;
-            Debug.Log(tempVal);
-        }
-
-        check = temp;
     }
 
     public void SelectFood(int rnd)
