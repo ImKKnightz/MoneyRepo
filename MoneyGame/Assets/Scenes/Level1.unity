@@ -1198,6 +1198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 510174196}
+  foodParent: {fileID: 1070165385}
   foodlist: 0100000002000000030000000400000005000000060000000700000008000000
   foodprices:
   - 2.1
@@ -1209,6 +1210,7 @@ MonoBehaviour:
   - 4.2
   - 1.1
   check: 
+  fourfoods: 
   gameDifficulty: 0
   rnd: 0
 --- !u!4 &510174197

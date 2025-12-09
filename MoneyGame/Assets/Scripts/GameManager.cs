@@ -12,9 +12,13 @@ public class GameManager : MonoBehaviour
     SoundManager soundManager;
     public GameManager gameManager;
 
-    public int[] foodlist = {1,2,3,4,5,6,7,8};
+    public Transform foodParent;
+
+    public List <int> foodlist = new List<int>{1,2,3,4,5,6,7,8};
     public List<float> foodprices = new List<float> { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
     public List<int> check = new List<int>();
+    public List<int> fourfoods = new List<int>();
+
     public int gameDifficulty;
     /*
     public TextMeshProUGUI fooddialogue;
@@ -93,7 +97,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log(i);
             }
             */
-            SelectDifficulty();
+            //SelectDifficulty();
+            Select4RandomFoods();
         }
     }
 
@@ -101,6 +106,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameDifficulty == 1)
         {
+            //Create a new list to store the rounded prices so as to not interfere with the original list when rounding up
             List <int> roundedfoodprices = foodprices.Select(i => Mathf.RoundToInt(i)).ToList();
             Debug.Log(string.Join(",", roundedfoodprices));
         }
@@ -125,9 +131,32 @@ public class GameManager : MonoBehaviour
         Debug.Log(check);
     }
 
-    public void SelectFood(int rnd)
+    public void Select4RandomFoods()
     {
-        
+        List<int> shuffled = foodlist.OrderBy(x => UnityEngine.Random.value).ToList();
+
+        fourfoods = shuffled.Take(4).ToList();
+
+        Debug.Log("4 active foods are" + string.Join(",", fourfoods));
+
+        Activate4Foods();
+    }
+
+    public void Activate4Foods()
+    {
+        //Set all children as false
+        for (int i = 0; i < foodParent.childCount; i++)
+        {
+            foodParent.GetChild(i).gameObject.SetActive(false);
+            Debug.Log("All children setactive false");
+        }
+
+        foreach (int id in fourfoods)
+        {
+            // id starts at 1, so index = id-1
+            foodParent.GetChild(id - 1).gameObject.SetActive(true);
+            Debug.Log("4 children selected");
+        }
     }
 
     public void ChangeDialogue()
