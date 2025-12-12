@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 66262532}
   - component: {fileID: 66262531}
   - component: {fileID: 66262530}
+  - component: {fileID: 66262533}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -205,7 +206,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 66262531}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 66262533}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &66262531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +269,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66262528}
   m_CullTransparentMesh: 1
+--- !u!114 &66262533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66262528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 3
+  foodcost: 0
 --- !u!1 &88708867
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +697,7 @@ GameObject:
   - component: {fileID: 314718841}
   - component: {fileID: 314718840}
   - component: {fileID: 314718839}
+  - component: {fileID: 314718842}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -728,7 +768,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 314718840}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 314718842}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &314718840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,6 +831,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314718837}
   m_CullTransparentMesh: 1
+--- !u!114 &314718842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314718837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 2
+  foodcost: 0
 --- !u!1 &332021252
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +978,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332021252}
   m_CullTransparentMesh: 1
+--- !u!1 &338227611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 338227613}
+  - component: {fileID: 338227612}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &338227612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338227611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fbe1715d456f24290edbd7cf52e07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pricedialoguetext: {fileID: 88708867}
+  dialogue: {fileID: 602896946}
+  pricedialogue: {fileID: 88708869}
+--- !u!4 &338227613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338227611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1277.7228, y: 757.2536, z: 14.907599}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &461882203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,8 +1200,6 @@ MonoBehaviour:
   - 2.7
   - 4.2
   - 1.1
-  check: 
-  fourfoods: 
   gameDifficulty: 0
   rnd: 0
 --- !u!4 &510174197
@@ -1129,7 +1252,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -307}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &602896946
 MonoBehaviour:
@@ -1240,6 +1363,7 @@ GameObject:
   - component: {fileID: 631458355}
   - component: {fileID: 631458354}
   - component: {fileID: 631458353}
+  - component: {fileID: 631458356}
   m_Layer: 5
   m_Name: Button (6)
   m_TagString: Untagged
@@ -1310,7 +1434,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 631458354}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 631458356}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &631458354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,6 +1497,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631458351}
   m_CullTransparentMesh: 1
+--- !u!114 &631458356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631458351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 7
+  foodcost: 0
 --- !u!1 &693589477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,6 +1791,7 @@ GameObject:
   - component: {fileID: 748879240}
   - component: {fileID: 748879239}
   - component: {fileID: 748879238}
+  - component: {fileID: 748879241}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1699,7 +1862,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 748879239}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 748879241}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &748879239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,6 +1925,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748879236}
   m_CullTransparentMesh: 1
+--- !u!114 &748879241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748879236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 1
+  foodcost: 0
 --- !u!1 &816669576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,6 +1951,7 @@ GameObject:
   - component: {fileID: 816669580}
   - component: {fileID: 816669579}
   - component: {fileID: 816669578}
+  - component: {fileID: 816669581}
   m_Layer: 5
   m_Name: Button (7)
   m_TagString: Untagged
@@ -1820,7 +2022,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 816669579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 816669581}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &816669579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,6 +2085,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816669576}
   m_CullTransparentMesh: 1
+--- !u!114 &816669581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816669576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 8
+  foodcost: 0
 --- !u!1 &835777305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,6 +2111,7 @@ GameObject:
   - component: {fileID: 835777308}
   - component: {fileID: 835777307}
   - component: {fileID: 835777306}
+  - component: {fileID: 835777310}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1968,6 +2209,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &835777310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835777305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fbe1715d456f24290edbd7cf52e07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pricedialoguetext: {fileID: 88708867}
+  dialogue: {fileID: 602896946}
+  pricedialogue: {fileID: 88708869}
 --- !u!1 &839308408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,7 +2589,7 @@ GameObject:
   - component: {fileID: 1070165387}
   - component: {fileID: 1070165386}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: FoodParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2364,7 +2620,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -905, y: 132}
-  m_SizeDelta: {x: 500, y: 500}
+  m_SizeDelta: {x: 223.35, y: 422.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1070165386
 MonoBehaviour:
@@ -2403,7 +2659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2574,6 +2830,7 @@ GameObject:
   - component: {fileID: 1376597122}
   - component: {fileID: 1376597121}
   - component: {fileID: 1376597120}
+  - component: {fileID: 1376597123}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -2644,7 +2901,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1376597121}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1376597123}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1376597121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2683,6 +2964,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376597118}
   m_CullTransparentMesh: 1
+--- !u!114 &1376597123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376597118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 4
+  foodcost: 0
 --- !u!1 &1514641127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,6 +3065,7 @@ GameObject:
   - component: {fileID: 1568187013}
   - component: {fileID: 1568187012}
   - component: {fileID: 1568187011}
+  - component: {fileID: 1568187014}
   m_Layer: 5
   m_Name: Button (4)
   m_TagString: Untagged
@@ -2840,7 +3136,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1568187012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1568187014}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1568187012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2879,6 +3199,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568187009}
   m_CullTransparentMesh: 1
+--- !u!114 &1568187014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568187009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 5
+  foodcost: 0
 --- !u!1 &1589946958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,6 +3225,7 @@ GameObject:
   - component: {fileID: 1589946962}
   - component: {fileID: 1589946961}
   - component: {fileID: 1589946960}
+  - component: {fileID: 1589946963}
   m_Layer: 5
   m_Name: Button (5)
   m_TagString: Untagged
@@ -2961,7 +3296,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1589946961}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 835777310}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1589946963}
+        m_TargetAssemblyTypeName: FoodButton, Assembly-CSharp
+        m_MethodName: OnClickFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1589946961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3000,6 +3359,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589946958}
   m_CullTransparentMesh: 1
+--- !u!114 &1589946963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589946958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3502bc10cbccc848886f652a3931fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodID: 6
+  foodcost: 0
 --- !u!1 &1647668954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3443,3 +3816,4 @@ SceneRoots:
   - {fileID: 835777309}
   - {fileID: 1014780852}
   - {fileID: 510174197}
+  - {fileID: 338227613}

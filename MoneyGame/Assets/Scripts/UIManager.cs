@@ -6,22 +6,21 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject foodtext;
     public GameObject pricedialoguetext;
 
-    public TextMeshProUGUI fooddialogue;
+    public TextMeshProUGUI dialogue;
     public TextMeshProUGUI pricedialogue;
 
     private void Start()
     {
-        foodtext.SetActive(true);
         pricedialoguetext.SetActive(false);
-        fooddialogue.text = "Select a food item from the menu.";
+        dialogue.text = "Select a food item from the menu.";
     }
 
-    public void ChangeDialogue()
+    public void ChangeDialogue(float price)
     {
-        foodtext.SetActive(false);
+        dialogue.text = "Your food costs ";
         pricedialoguetext.SetActive(true);
+        pricedialogue.text = price.ToString("F2"); // shows 2 decimal places
     }
 }

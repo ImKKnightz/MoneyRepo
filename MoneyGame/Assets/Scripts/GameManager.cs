@@ -18,12 +18,10 @@ public class GameManager : MonoBehaviour
     public List<float> foodprices = new List<float> { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
     public List<(int id, float price)> selectedFoods = new List<(int, float)>();
 
-    public List<int> check = new List<int>();
-    public List<int> fourfoods = new List<int>();
-
+    
     public int gameDifficulty;
     /*
-    public TextMeshProUGUI fooddialogue;
+    
     public TextMeshProUGUI pricedialogue;
 
     public GameObject foodtext;
@@ -56,6 +54,19 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameManager.gameObject);
     }
     */
+
+    public float GetFoodPriceByID(int foodID)
+    {
+        foreach (var item in selectedFoods)
+        {
+            if (item.id == foodID)
+                return item.price;
+        }
+
+        // Should not happen, but fallback:
+        return -1;
+    }
+
     private void Start()
     {
         /*
@@ -150,6 +161,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeDialogue()
     {
+        
         //foodtext.SetActive(false);
         //pricedialoguetext.SetActive(true);
     }
