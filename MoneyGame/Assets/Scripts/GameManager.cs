@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public List <int> foodlist = new List<int>{1,2,3,4,5,6,7,8};
     public List<float> foodprices = new List<float> { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
+    public List<(int id, float price)> selectedFoods = new List<(int, float)>();
+
     public List<int> check = new List<int>();
     public List<int> fourfoods = new List<int>();
 
@@ -81,24 +83,15 @@ public class GameManager : MonoBehaviour
         */
 
         gameDifficulty = 1;
+
+        SelectRandomFoods();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            /*
-            RandomFood();
-            int count = check.Count();
-            Debug.Log(count);
-            List<int> list = check;
-            foreach (int i in list)
-            {
-                Debug.Log(i);
-            }
-            */
-            //SelectDifficulty();
-            Select4RandomFoods();
+            
         }
     }
 
@@ -116,46 +109,42 @@ public class GameManager : MonoBehaviour
     {
         //Random number generator from range (a,b)
         rnd = UnityEngine.Random.Range(1,8);
-        
-        /*//Get float value in the list
-        float value = foodprices[rnd - 1];
-        //Round up float value to int
-        int roundedvalue = Convert.ToInt32(value);*/
     }
 
-    public void RandomFood()
+    public void SelectRandomFoods()
     {
-        //OrderBy() function rearranges the order of foodlist
-        //The () usese the UnityEngine.Random.value to randomise the elements in the list
-        check = foodlist.OrderBy(x => UnityEngine.Random.value).ToList();
-        Debug.Log(check);
+        // Pair food IDs with their prices
+        var combined = foodlist
+            .Zip(foodprices, (id, price) => new { id, price })
+            .OrderBy(x => UnityEngine.Random.value)
+            .ToList();
+
+        // Select the first 4
+        selectedFoods = combined.Take(4)
+            .Select(x => (x.id, x.price))
+            .ToList();
+
+        Debug.Log("Selected Food IDs: " + string.Join(", ", selectedFoods.Select(x => x.id)));
+        Debug.Log("Selected Prices: " + string.Join(", ", selectedFoods.Select(x => x.price)));
+
+        ActivateSelectedFoods();
     }
 
-    public void Select4RandomFoods()
+    public void ActivateSelectedFoods()
     {
-        List<int> shuffled = foodlist.OrderBy(x => UnityEngine.Random.value).ToList();
+        // Turn all foods OFF first
+        foreach (Transform child in foodParent)
+            child.gameObject.SetActive(false);
 
-        fourfoods = shuffled.Take(4).ToList();
-
-        Debug.Log("4 active foods are" + string.Join(",", fourfoods));
-
-        Activate4Foods();
-    }
-
-    public void Activate4Foods()
-    {
-        //Set all children as false
-        for (int i = 0; i < foodParent.childCount; i++)
+        // Turn ON selected foods
+        foreach (var item in selectedFoods)
         {
-            foodParent.GetChild(i).gameObject.SetActive(false);
-            Debug.Log("All children setactive false");
-        }
+            int index = item.id - 1; // Convert foodID (1–8) to index (0–7)
 
-        foreach (int id in fourfoods)
-        {
-            // id starts at 1, so index = id-1
-            foodParent.GetChild(id - 1).gameObject.SetActive(true);
-            Debug.Log("4 children selected");
+            if (index >= 0 && index < foodParent.childCount)
+            {
+                foodParent.GetChild(index).gameObject.SetActive(true);
+            }
         }
     }
 
