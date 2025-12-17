@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 {
     SoundManager soundManager;
     public GameManager gameManager;
+    public PaymentManager paymentManager;
 
     public Transform foodParent;
 
@@ -157,6 +158,34 @@ public class GameManager : MonoBehaviour
                 foodParent.GetChild(index).gameObject.SetActive(true);
             }
         }
+    }
+
+    public void OnFoodSelected(int foodID)
+    {
+        // foodID is 1–8
+        float price = GetFoodPriceByID(foodID);
+
+        if (price < 0)
+        {
+            Debug.LogError("Food not found!");
+            return;
+        }
+
+        paymentManager.StartPayment(price);
+
+        Debug.Log($"Food {foodID} selected, price: {price}");
+
+        // Lock food selection here if needed
+    }
+
+    public float FindFoodPrice(int foodID)
+    {
+        foreach (var item in selectedFoods)
+        {
+            if (item.id == foodID)
+                return item.price;
+        }
+        return -1;
     }
 
     public void ChangeDialogue()
