@@ -19,8 +19,13 @@ public class UIManager : MonoBehaviour
 
     public void ChangeDialogue(float price)
     {
-        dialogue.text = "Your food costs ";
+        dialogue.text = "Your food costs: ";
         pricedialoguetext.SetActive(true);
-        pricedialogue.text = price.ToString("F2"); // shows 2 decimal places
+        pricedialogue.text = "$" + price.ToString("F2"); // shows 2 decimal places
+    }
+
+    public void ResetDialogue()
+    {
+        pricedialogue.text = "$0.00";
     }
 }

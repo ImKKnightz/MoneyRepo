@@ -7,8 +7,15 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
+    public SoundManager soundManager;
+
     public AudioClip background;
     public AudioClip coinCollect;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(soundManager);
+    }
 
     private void Start()
     {

@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PaymentManager : MonoBehaviour
 {
-    [Header("UI")]
     public TextMeshProUGUI totalPaidText;
+    public GameObject successUI;
+    public GameManager gameManager;
 
-    [Header("State")]
     public float prices;
     public float totalPaid;
     public bool paymentActive;
+    public int qnscounter;
 
     void Start()
     {
         ResetPayment();
+        successUI.SetActive(false);
     }
 
     // Called after food is selected
@@ -50,6 +53,8 @@ public class PaymentManager : MonoBehaviour
         {
             paymentActive = false;
             Debug.Log("SUCCESS");
+
+            successUI.SetActive(true);
         }
         else if (totalPaid > prices)
         {
@@ -82,5 +87,28 @@ public class PaymentManager : MonoBehaviour
         totalPaid = 0f;
         paymentActive = false;
         UpdateUI();
+    }
+
+    public void ContinueLevel()
+    {
+        successUI.SetActive(false);
+        ResetPayment();
+        qnscounter += 1;
+        Debug.Log("counter updated");
+        PaymenttoChange();
+
+        gameManager.ResetLevel();
+    }
+
+    public void PaymenttoChange()
+    {
+        if(qnscounter >= 4)
+        {
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            return;
+        }
     }
 }

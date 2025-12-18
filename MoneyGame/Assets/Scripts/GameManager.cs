@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using static UnityEngine.Rendering.DebugUI;
+//using static UnityEngine.Rendering.DebugUI;
 using System.Linq;
 
 public class GameManager : MonoBehaviour
@@ -165,13 +165,15 @@ public class GameManager : MonoBehaviour
         // foodID is 1–8
         float price = GetFoodPriceByID(foodID);
 
-        if (price < 0)
-        {
-            Debug.LogError("Food not found!");
-            return;
-        }
 
         paymentManager.StartPayment(price);
+
+        foreach (Transform child in foodParent)
+        {
+            Button btn = child.GetComponent<Button>();
+            if (btn != null)
+                btn.interactable = false;
+        }
 
         Debug.Log($"Food {foodID} selected, price: {price}");
 
@@ -186,6 +188,23 @@ public class GameManager : MonoBehaviour
                 return item.price;
         }
         return -1;
+    }
+
+    public void EnableFoodBtn()
+    {
+        foreach (Transform child in foodParent)
+        {
+            Button btn = child.GetComponent<Button>();
+            if (btn != null)
+                btn.interactable = true;
+        }
+    }
+
+    public void ResetLevel()
+    {
+        SelectRandomFoods();
+        EnableFoodBtn();
+        Debug.Log("Level Reset");
     }
 
     public void ChangeDialogue()

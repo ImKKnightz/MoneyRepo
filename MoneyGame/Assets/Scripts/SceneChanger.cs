@@ -24,4 +24,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
