@@ -102,9 +102,10 @@ public class PaymentManager : MonoBehaviour
 
     public void PaymenttoChange()
     {
-        if(qnscounter >= 4)
+        if(qnscounter == 4)
         {
             SceneManager.LoadScene(2);
+            qnscounter = 0;
         }
         else
         {

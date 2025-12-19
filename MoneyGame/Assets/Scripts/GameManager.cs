@@ -18,34 +18,9 @@ public class GameManager : MonoBehaviour
     public List <int> foodlist = new List<int>{1,2,3,4,5,6,7,8};
     public List<float> foodprices = new List<float> { 2.10f, 3.20f, 2.45f, 3.10f, 4.10f, 2.70f, 4.2f, 1.10f};
     public List<(int id, float price)> selectedFoods = new List<(int, float)>();
-
+    public List<int> roundedfood;
     
     public int gameDifficulty;
-    /*
-    
-    public TextMeshProUGUI pricedialogue;
-
-    public GameObject foodtext;
-    public GameObject pricedialoguetext;
-
-    public GameObject food1;
-    public GameObject food2;
-    public GameObject food3;
-    public GameObject food4;
-    public GameObject food5;
-    public GameObject food6;
-    public GameObject food7;
-    public GameObject food8;
-
-    public GameObject deselectfood1;
-    public GameObject deselectfood2;
-    public GameObject deselectfood3;
-    public GameObject deselectfood4;
-    public GameObject deselectfood5;
-    public GameObject deselectfood6;
-    public GameObject deselectfood7;
-    public GameObject deselectfood8;
-    */
     public int rnd;
 
     /*
@@ -70,31 +45,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        /*
-        food1.SetActive(false);
-        food2.SetActive(false);
-        food3.SetActive(false);
-        food4.SetActive(false);
-        food5.SetActive(false);
-        food6.SetActive(false);
-        food7.SetActive(false);
-        food8.SetActive(false);
-
-        deselectfood1.SetActive(false);
-        deselectfood2.SetActive(false);
-        deselectfood3.SetActive(false);
-        deselectfood4.SetActive(false);
-        deselectfood5.SetActive(false);
-        deselectfood6.SetActive(false);
-        deselectfood7.SetActive(false);
-        deselectfood8.SetActive(false);
-        
-        foodtext.SetActive(true);
-        pricedialoguetext.SetActive(false);
-        fooddialogue.text = "Select a food item from the menu.";
-        */
-
         gameDifficulty = 1;
+        roundedfood = foodprices
+        .Select(p => Mathf.RoundToInt(p))
+        .ToList();
 
         SelectRandomFoods();
     }
@@ -180,6 +134,17 @@ public class GameManager : MonoBehaviour
         // Lock food selection here if needed
     }
 
+    public void RoundedFoodSelected(int foodID)
+    {
+        int index = foodID - 1;
+
+        int roundedPrice = roundedfood[index];
+
+        paymentManager.StartPayment(roundedPrice);
+
+        Debug.Log($"Food {foodID} selected. Rounded price: {roundedPrice}");
+    }
+
     public float FindFoodPrice(int foodID)
     {
         foreach (var item in selectedFoods)
@@ -205,13 +170,6 @@ public class GameManager : MonoBehaviour
         SelectRandomFoods();
         EnableFoodBtn();
         Debug.Log("Level Reset");
-    }
-
-    public void ChangeDialogue()
-    {
-        
-        //foodtext.SetActive(false);
-        //pricedialoguetext.SetActive(true);
     }
 
     /*public void Allowance()

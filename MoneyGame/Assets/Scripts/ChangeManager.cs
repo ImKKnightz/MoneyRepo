@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ChangeManager : MonoBehaviour
 {
@@ -16,8 +17,11 @@ public class ChangeManager : MonoBehaviour
 
     public PaymentManager paymentmanager;
 
+    public GameObject successpanel;
+
     public int selectedchangeID;
     public float selectedchangeamt;
+    public int counter = 0;
 
     public void SelectRandomChange()
     {
@@ -71,6 +75,18 @@ public class ChangeManager : MonoBehaviour
         }
     }
 
+    public void EndChangeLevel()
+    {
+        if (counter == 4)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            return ;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,8 +95,11 @@ public class ChangeManager : MonoBehaviour
 
     public void ResetChangeLvl()
     {
+        successpanel.SetActive(false);
+        counter += 1;
         SelectRandomChange();
         UnlockChangeBtn();
+        Debug.Log("Change reset");
     }
 
     // Update is called once per frame
