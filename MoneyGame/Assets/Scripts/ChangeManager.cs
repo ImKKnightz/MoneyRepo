@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,10 +12,14 @@ public class ChangeManager : MonoBehaviour
     public List<int> changelist = new List<int> {1,2,3,4,5,6,7,8};
     public List<float> changeamount = new List<float> {1.2f, 5.55f, 9.5f, 4.2f, 3.85f, 6.1f, 2.9f, 8.65f};
     public List<(int id, float price)> selectedchange = new List<(int, float)>();
+    public List<int> roundedchange;
 
     public Transform changeParent;
 
     public PaymentManager paymentmanager;
+    public UIManager UIManager;
+    public SceneChanger changer;
+    public GameDifficulty GameDifficulty;
 
     public GameObject successpanel;
 
@@ -45,12 +49,15 @@ public class ChangeManager : MonoBehaviour
 
     public void OnChangeSelected(int changeID)
     {
-        if(changeID != selectedchangeID)
-        {
-            return;
-        }
+        if (changeID != selectedchangeID) return;
 
-        paymentmanager.StartPayment(selectedchangeamt);
+        float price =
+            GameDifficulty == GameDifficulty.Level1
+            ? roundedchange[changeID - 1]
+            : selectedchangeamt;
+
+        paymentmanager.StartPayment(price);
+        UIManager.ChangeDialogue(price);
 
         LockItemBtn();
     }
@@ -90,7 +97,17 @@ public class ChangeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //GameDifficulty = (GameDifficulty)PlayerPrefs.GetInt("GameDifficulty", 1);
+        changer.SetDifficulty();
+        GameDifficulty = GameState.CurrentDifficulty;
+
+        roundedchange = changeamount
+            .Select(p => Mathf.RoundToInt(p))
+            .ToList();
+
         SelectRandomChange();
+
+        UIManager.UpdateDialogueByDifficulty(GameDifficulty);
     }
 
     public void ResetChangeLvl()
@@ -107,4 +124,8 @@ public class ChangeManager : MonoBehaviour
     {
         
     }
+}
+public static class GameState
+{
+    public static GameDifficulty CurrentDifficulty;
 }

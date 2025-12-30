@@ -89,7 +89,18 @@ public class PaymentManager : MonoBehaviour
         UpdateUI();
     }
 
-    public void ContinueLevel()
+    public void ContinueRounded()
+    {
+        successUI.SetActive(false);
+        ResetPayment();
+        qnscounter += 1;
+        Debug.Log("counter updated");
+        RoundedPaymenttoChange();
+
+        gameManager.ResetLevel();
+    }
+
+    public void ContinueLvl()
     {
         successUI.SetActive(false);
         ResetPayment();
@@ -103,6 +114,18 @@ public class PaymentManager : MonoBehaviour
     public void PaymenttoChange()
     {
         if(qnscounter == 4)
+        {
+            SceneManager.LoadScene(4);
+            qnscounter = 0;
+        }
+        else
+        {
+            return;
+        }
+    }
+    public void RoundedPaymenttoChange()
+    {
+        if (qnscounter == 4)
         {
             SceneManager.LoadScene(2);
             qnscounter = 0;

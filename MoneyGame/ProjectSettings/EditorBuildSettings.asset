@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/PaymentRounded.unity
     guid: 93e79011276a08e4db630456593489f3
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/ChangeRounded.unity
     guid: 1f5d7dae2313b044eb73c65aba844d80
   - enabled: 1
-    path: Assets/Scenes/Rounded.unity
+    path: Assets/Scenes/Payment.unity
     guid: e867ac976f93f4c4eb10dadbacf4f5ce
+  - enabled: 1
+    path: Assets/Scenes/Change.unity
+    guid: b4588eaadcfbc0d4aabece70841f84bf
   m_configObjects: {}

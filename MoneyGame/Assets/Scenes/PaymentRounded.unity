@@ -1656,6 +1656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 510174196}
   paymentManager: {fileID: 31034038}
+  uiManager: {fileID: 338227612}
+  gameDifficulty: 1
   foodParent: {fileID: 1070165385}
   foodlist: 0100000002000000030000000400000005000000060000000700000008000000
   foodprices:
@@ -1668,7 +1670,6 @@ MonoBehaviour:
   - 4.2
   - 1.1
   roundedfood: 
-  gameDifficulty: 0
   rnd: 0
 --- !u!4 &510174197
 Transform:
@@ -3439,7 +3440,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 31034038}
         m_TargetAssemblyTypeName: PaymentManager, Assembly-CSharp
-        m_MethodName: ContinueLevel
+        m_MethodName: ContinueRounded
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3881,6 +3882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1836a37b760760744b6e9700f57f4117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameDifficulty: 0
 --- !u!114 &1431673966
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     SoundManager soundManager;
     public GameManager gameManager;
     public PaymentManager paymentManager;
+    public UIManager uiManager;
+    public GameDifficulty gameDifficulty;
 
     public Transform foodParent;
 
@@ -20,7 +22,6 @@ public class GameManager : MonoBehaviour
     public List<(int id, float price)> selectedFoods = new List<(int, float)>();
     public List<int> roundedfood;
     
-    public int gameDifficulty;
     public int rnd;
 
     /*
@@ -45,12 +46,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        gameDifficulty = 1;
+        //gameDifficulty = (GameDifficulty)PlayerPrefs.GetInt("GameDifficulty", 1);
+
         roundedfood = foodprices
-        .Select(p => Mathf.RoundToInt(p))
-        .ToList();
+            .Select(p => Mathf.RoundToInt(p))
+            .ToList();
 
         SelectRandomFoods();
+        uiManager.UpdateDialogueByDifficulty(gameDifficulty);
     }
 
     private void Update()
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
             
         }
     }
-
+    /*
     public void SelectDifficulty()
     {
         if (gameDifficulty == 1)
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(string.Join(",", roundedfoodprices));
         }
     }
-
+    */
     public void Randomiser()
     {
         //Random number generator from range (a,b)
@@ -116,33 +119,31 @@ public class GameManager : MonoBehaviour
 
     public void OnFoodSelected(int foodID)
     {
-        // foodID is 1–8
-        float price = GetFoodPriceByID(foodID);
+        float price;
 
+        if (gameDifficulty == GameDifficulty.Level1)
+        {
+            price = GetRoundedFoodPriceByID(foodID);
+        }
+        else
+        {
+            price = GetFoodPriceByID(foodID);
+        }
 
         paymentManager.StartPayment(price);
+        uiManager.ChangeDialogue(price);
 
+        LockFoodBtn();
+    }
+
+    public void LockFoodBtn()
+    {
         foreach (Transform child in foodParent)
         {
             Button btn = child.GetComponent<Button>();
             if (btn != null)
                 btn.interactable = false;
         }
-
-        Debug.Log($"Food {foodID} selected, price: {price}");
-
-        // Lock food selection here if needed
-    }
-
-    public void RoundedFoodSelected(int foodID)
-    {
-        int index = foodID - 1;
-
-        int roundedPrice = roundedfood[index];
-
-        paymentManager.StartPayment(roundedPrice);
-
-        Debug.Log($"Food {foodID} selected. Rounded price: {roundedPrice}");
     }
 
     public float FindFoodPrice(int foodID)
@@ -172,6 +173,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Reset");
     }
 
+    public int GetRoundedFoodPriceByID(int foodID)
+    {
+        int index = foodID - 1;
+        return roundedfood[index];
+    }
+
     /*public void Allowance()
     {
         bank += allowance;
@@ -193,4 +200,9 @@ public class GameManager : MonoBehaviour
         daysleft -= 1;
         DaysLeftUpdate();
     }*/
+}
+public enum GameDifficulty
+{
+    Level1 = 1,
+    Level2 = 2
 }

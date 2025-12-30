@@ -28,4 +28,21 @@ public class UIManager : MonoBehaviour
     {
         pricedialogue.text = "$0.00";
     }
+
+    public void UpdateDialogueByDifficulty(GameDifficulty difficulty)
+    {
+        pricedialoguetext.SetActive(false);
+
+        switch (difficulty)
+        {
+            case GameDifficulty.Level1:
+                dialogue.text = "Click on the person to serve them.";
+                break;
+
+            case GameDifficulty.Level2:
+                dialogue.text = "Select a food item from the menu.";
+                break;
+
+        }
+    }
 }
