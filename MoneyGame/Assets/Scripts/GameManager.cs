@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             .ToList();
 
         SelectRandomFoods();
-        uiManager.UpdateDialogueByDifficulty(gameDifficulty);
+        uiManager.PaymentSceneText();
     }
 
     private void Update()
@@ -63,17 +63,6 @@ public class GameManager : MonoBehaviour
             
         }
     }
-    /*
-    public void SelectDifficulty()
-    {
-        if (gameDifficulty == 1)
-        {
-            //Create a new list to store the rounded prices so as to not interfere with the original list when rounding up
-            List <int> roundedfoodprices = foodprices.Select(i => Mathf.RoundToInt(i)).ToList();
-            Debug.Log(string.Join(",", roundedfoodprices));
-        }
-    }
-    */
     public void Randomiser()
     {
         //Random number generator from range (a,b)
@@ -178,28 +167,6 @@ public class GameManager : MonoBehaviour
         int index = foodID - 1;
         return roundedfood[index];
     }
-
-    /*public void Allowance()
-    {
-        bank += allowance;
-        soundManager.PlaySFX(soundManager.coinCollect);
-        UpdateMoneyText();
-    }
-
-    public void Spending()
-    {
-        if (bank >= spendings)
-        {
-            bank -= spendings;
-        }
-        UpdateMoneyText();
-    }
-
-    public void DayCycle()
-    {
-        daysleft -= 1;
-        DaysLeftUpdate();
-    }*/
 }
 public enum GameDifficulty
 {

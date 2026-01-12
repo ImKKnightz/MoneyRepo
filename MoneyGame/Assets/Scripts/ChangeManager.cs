@@ -107,7 +107,7 @@ public class ChangeManager : MonoBehaviour
 
         SelectRandomChange();
 
-        UIManager.UpdateDialogueByDifficulty(GameDifficulty);
+        UIManager.ChangeSceneText();
     }
 
     public void ResetChangeLvl()

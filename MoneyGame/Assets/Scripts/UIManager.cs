@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         pricedialoguetext.SetActive(false);
-        dialogue.text = "Select a food item from the menu.";
+        //dialogue.text = "Select a food item from the menu.";
     }
 
     public void ChangeDialogue(float price)
@@ -29,6 +29,16 @@ public class UIManager : MonoBehaviour
         pricedialogue.text = "$0.00";
     }
 
+    public void ChangeSceneText()
+    {
+        dialogue.text = "Click on the person to serve them.";
+    }
+
+    public void PaymentSceneText()
+    {
+        dialogue.text = "Select a food item from the menu";
+    }
+    /*
     public void UpdateDialogueByDifficulty(GameDifficulty difficulty)
     {
         pricedialoguetext.SetActive(false);
@@ -45,4 +55,5 @@ public class UIManager : MonoBehaviour
 
         }
     }
+    */
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,10 +11,21 @@ public class PaymentManager : MonoBehaviour
     public GameObject successUI;
     public GameManager gameManager;
 
+    public Transform moneyDisplay;
+
     public float prices;
     public float totalPaid;
     public bool paymentActive;
     public int qnscounter;
+
+    [Serializable]
+    public struct MoneyVisual
+    {
+        public float value;
+        public GameObject prefab;
+    }
+
+    public List<MoneyVisual> moneyVisuals;
 
     void Start()
     {
@@ -43,6 +55,7 @@ public class PaymentManager : MonoBehaviour
         Debug.Log("Money added");
         UpdateUI();
         Debug.Log("UI updated");
+        UpdateDisplay();
     }
 
     public void CheckPayment()
@@ -87,6 +100,12 @@ public class PaymentManager : MonoBehaviour
         totalPaid = 0f;
         paymentActive = false;
         UpdateUI();
+        UpdateDisplay();
+
+        foreach (Transform child in moneyDisplay)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void ContinueRounded()
@@ -134,5 +153,24 @@ public class PaymentManager : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void SpawnMoneyVisual(float amount)
+    {
+        MoneyVisual visual = moneyVisuals.Find(v => Mathf.Approximately(v.value, amount));
+
+        if (visual.prefab != null)
+        {
+            Instantiate(visual.prefab, moneyDisplay);
+        }
+        else
+        {
+            Debug.LogWarning($"No money prefab for value: {amount}");
+        }
+    }
+
+    public void UpdateDisplay()
+    {
+        
     }
 }
