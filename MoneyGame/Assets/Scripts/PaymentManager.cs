@@ -57,6 +57,8 @@ public class PaymentManager : MonoBehaviour
         Debug.Log("Money added");
         UpdateUI();
         Debug.Log("UI updated");
+        SpawnMoneyVisual(amount);
+        Debug.Log("Money visual added");
         UpdateDisplay();
     }
 
@@ -82,7 +84,7 @@ public class PaymentManager : MonoBehaviour
             Debug.Log("NOT ENOUGH");
         }
     }
-
+    /*
     public void Retry()
     {
         
@@ -91,8 +93,9 @@ public class PaymentManager : MonoBehaviour
         paymentActive = true;
         UpdateUI();
         Debug.Log("Retrying");
-    }
 
+    }
+    */
     public void UpdateUI()
     {
         totalPaidText.text = $"Paid: ${totalPaid:0.00}";
@@ -102,7 +105,7 @@ public class PaymentManager : MonoBehaviour
     public void ResetPayment()
     {
         totalPaid = 0f;
-        paymentActive = false;
+        paymentActive = true;
         UpdateUI();
         UpdateDisplay();
 
