@@ -9,6 +9,8 @@ public class PaymentManager : MonoBehaviour
 {
     public TextMeshProUGUI totalPaidText;
     public GameObject successUI;
+    public GameObject toomuchUI;
+    public GameObject notenoughUI;
     public GameManager gameManager;
 
     public Transform moneyDisplay;
@@ -71,10 +73,12 @@ public class PaymentManager : MonoBehaviour
         }
         else if (totalPaid > prices)
         {
+            toomuchUI.SetActive(true);
             Debug.Log("TOO MUCH");
         }
         else
         {
+            notenoughUI.SetActive(true);
             Debug.Log("NOT ENOUGH");
         }
     }
@@ -111,6 +115,8 @@ public class PaymentManager : MonoBehaviour
     public void ContinueRounded()
     {
         successUI.SetActive(false);
+        toomuchUI.SetActive(false);
+        notenoughUI.SetActive(false);
         ResetPayment();
         qnscounter += 1;
         Debug.Log("counter updated");
