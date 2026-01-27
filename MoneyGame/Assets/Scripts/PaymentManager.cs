@@ -11,7 +11,9 @@ public class PaymentManager : MonoBehaviour
     public GameObject successUI;
     public GameObject toomuchUI;
     public GameObject notenoughUI;
+
     public GameManager gameManager;
+    public SoundManager soundManager;
 
     public Transform moneyDisplay;
 
@@ -31,6 +33,7 @@ public class PaymentManager : MonoBehaviour
 
     void Start()
     {
+        soundManager = SoundManager.instance;
         ResetPayment();
         successUI.SetActive(false);
     }
@@ -59,7 +62,6 @@ public class PaymentManager : MonoBehaviour
         Debug.Log("UI updated");
         SpawnMoneyVisual(amount);
         Debug.Log("Money visual added");
-        UpdateDisplay();
     }
 
     public void CheckPayment()
@@ -71,16 +73,19 @@ public class PaymentManager : MonoBehaviour
             paymentActive = false;
             Debug.Log("SUCCESS");
 
+            soundManager.PlaySFX(soundManager.coinCollect);
             successUI.SetActive(true);
         }
         else if (totalPaid > prices)
         {
             toomuchUI.SetActive(true);
+            soundManager.PlaySFX(soundManager.wrongClip);
             Debug.Log("TOO MUCH");
         }
         else
         {
             notenoughUI.SetActive(true);
+            soundManager.PlaySFX(soundManager.wrongClip);
             Debug.Log("NOT ENOUGH");
         }
     }
@@ -107,7 +112,6 @@ public class PaymentManager : MonoBehaviour
         totalPaid = 0f;
         paymentActive = true;
         UpdateUI();
-        UpdateDisplay();
 
         foreach (Transform child in moneyDisplay)
         {
@@ -176,10 +180,5 @@ public class PaymentManager : MonoBehaviour
         {
             Debug.LogWarning($"No money prefab for value: {amount}");
         }
-    }
-
-    public void UpdateDisplay()
-    {
-        
     }
 }

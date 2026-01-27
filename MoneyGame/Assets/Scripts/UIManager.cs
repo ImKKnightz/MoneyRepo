@@ -17,9 +17,16 @@ public class UIManager : MonoBehaviour
         //dialogue.text = "Select a food item from the menu.";
     }
 
-    public void ChangeDialogue(float price)
+    public void PaymentDialogue(float price)
     {
         dialogue.text = "Your food costs: ";
+        pricedialoguetext.SetActive(true);
+        pricedialogue.text = "$" + price.ToString("F2"); // shows 2 decimal places
+    }
+
+    public void ChangeDialogue(float price)
+    {
+        dialogue.text = "Their change is: ";
         pricedialoguetext.SetActive(true);
         pricedialogue.text = "$" + price.ToString("F2"); // shows 2 decimal places
     }

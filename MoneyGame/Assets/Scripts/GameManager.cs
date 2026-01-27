@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         }
 
         paymentManager.StartPayment(price);
-        uiManager.ChangeDialogue(price);
+        uiManager.PaymentDialogue(price);
 
         LockFoodBtn();
     }
